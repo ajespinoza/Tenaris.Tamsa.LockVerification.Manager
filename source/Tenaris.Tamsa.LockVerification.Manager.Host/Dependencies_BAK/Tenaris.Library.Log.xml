@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tenaris.Library.Log</name>
+    </assembly>
+    <members>
+        <member name="T:Tenaris.Library.Log.Common.CompareFileByDate">
+            <summary>
+            A file comparer by date. You can use this to sort an array of paths by file creation time.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.Common.NamedFormatter">
+            <summary>
+            An extension to the String.Format. It replaces the index based placeholder with named placeholders.
+            Basically you give to this function a format string just like the one you give to String.Format but
+            like this "{Name}, {LastName}. Age {Age:d2}". Then it will complete the data calling the properties
+            of an object (in the previous example, you should pass to the function an object with a Name, LastName
+            Age property.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Common.NamedFormatter.#ctor(System.String,System.Type)">
+            <summary>
+            Constructor for a named formmater.
+            </summary>
+            <param name="template">The string template. In the form of (example) "{Name}, {LastName}. Age {Age:d2}".</param>
+            <param name="objectType">The type of the object to use further on to replace the template.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Common.NamedFormatter.Format(System.Object)">
+            <summary>
+            Formats the template given in the constructor with the given object data.
+            </summary>
+            <param name="value">The object to use as data source.</param>
+            <returns>The formatted string.</returns>
+        </member>
+        <member name="T:Tenaris.Library.Log.Common.StringExtensions">
+            <summary>
+            Named formatter StringExtensions methods.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Common.StringExtensions.Inject(System.String,System.Object,System.Boolean)">
+            <summary>
+            Encapsulate the use of NamedFormatter.Format. Just pass to the function the format and the object
+            used as data source and it will replace the format string with the data in the object.
+            </summary>
+            <param name="format">The template string.</param>
+            <param name="value">The object to use as data source.</param>
+            <param name="cache">If true, the template will be cached to speed up (significantly) further calls.</param>
+            <returns>The formatted string.</returns>
+        </member>
+        <member name="M:Tenaris.Library.Log.Common.StringExtensions.Inject(System.String,System.Object)">
+            <summary>
+            Encapsulate the use of NamedFormatter.Format. Just pass to the function the format and the object
+            used as data source and it will replace the format string with the data in the object. It will
+            cache all the type info necessary to speed up further calls to this method.
+            </summary>
+            <param name="format">The template string.</param>
+            <param name="value">The object to use as data source.</param>
+            <returns>The formatted string.</returns>
+        </member>
+        <member name="T:Tenaris.Library.Log.Common.ThreadExtensions">
+            <summary>
+            Thread class extension methods.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Common.ThreadExtensions.ThreadExitCallback(System.Threading.Thread,System.Threading.ContextCallback,System.Object)">
+            <summary>
+            Callback passed to this method will be invoked on thread exit. State is a context object with
+            user defined data.
+            </summary>
+            <param name="thread">The thread on which the method is executed.</param>
+            <param name="callback"> The callback to call upon thread finalization.</param>
+            <param name="state">The user defined object to pass to the callback on invocation.</param>
+        </member>
+        <member name="T:Tenaris.Library.Log.LogConfiguration">
+            <summary>
+            Log configuration class.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.MsgFormat">
+            <summary>
+            Message format to use. It used named placedholders so you can build something like "{TypeChar} {Timestamp:yyyy-MM-dd HH:mm} [{AppDomainName,-20}:{ThreadId,-5:d5}] [lap={Lap,-9:e2}uS] {AssemblyName,-15} {IdentString} {Message}". Default value: TBD.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.DumpStack">
+            <summary>
+            If this is set to true, every time an unhandle exception is logged at the exit of a function, the full call stack will be logged. Default value: true.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.MaxQueueSize">
+            <summary>
+            Sets the max length of the buffer queue (in message number). Default value: 10000.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.LogLevel">
+            <summary>
+            Log level.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogLevel.Debug">
+            <summary>
+            A most detailed message.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogLevel.Message">
+            <summary>
+            A general, informative, message.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogLevel.Warning">
+            <summary>
+            A warning that does not prevents the process from executing but may impact
+            in functionality.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogLevel.Error">
+            <summary>
+            A critic error.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.LogType">
+            <summary>
+            Log type enumeration.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogType.Enter">
+            <summary>
+            Represents an enter event.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogType.Message">
+            <summary>
+            Represents a manually generated message.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogType.Leave">
+            <summary>
+            Represents a leave event.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.LogMessage">
+            <summary>
+            A LogMessage with all available data for logging.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Timestamp">
+            <summary>
+            Timestamp at which the message was generated.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Level">
+            <summary>
+            Log level of the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Message">
+            <summary>
+            Actual message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ProcessName">
+            <summary>
+            The process name that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.AppDomainName">
+            <summary>
+            The application domain that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ClassName">
+            <summary>
+            The class name that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.MethodName">
+            <summary>
+            The method name that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ThreadName">
+            <summary>
+            The thread name from which the message was created.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ThreadId">
+            <summary>
+            The thread id from which the message was created.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.IdentString">
+            <summary>
+            An identation string that represents de depth of the call stack and direction of the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.TypeChar">
+            <summary>
+            A char indicating the type of message (> for enter, - for message, ! for warning, @ for error, &lt; for leave).
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Depth">
+            <summary>
+            The depth in the call stack.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Lap">
+            <summary>
+            Time since last message or enter.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.LapFriendlyUnit">
+            <summary>
+            Just shows the most significant digits (unit).
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.LapFriendlyValue">
+            <summary>
+            Just shows the most significant digits (value).
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.AssemblyName">
+            <summary>
+            The assembly name where the class that generated the message is.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Type">
+            <summary>
+            Log type. Enter, Message or Leave.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.TraceExceptionsAttribute">
+            <summary>
+            A AOP attribute to trace the execution of a class/method. Add this to a class or method in order to
+            automatically log enters and leaves (both success or errors).
+            The level of log is pretty high, including methods parameters (both names and values), and results.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceExceptionsAttribute.CompileTimeInitialize(System.Reflection.MethodBase)">
+            <summary>
+            AOP Internal method. DO NOT CALL IT.
+            </summary>
+            <param name="method">The method to inspect at compile time.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceExceptionsAttribute.OnException(PostSharp.Laos.MethodExecutionEventArgs)">
+            <summary>
+            AOP Internal method. DO NOT CALL IT.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Worker.Enqueue(Tenaris.Library.Log.LogMessage)">
+            <summary>
+            Enqueues a message to be logged.
+            </summary>
+            <param name="msg">Message to log.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Worker.Start">
+            <summary>
+            Set the working thread in running state.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Worker.Stop">
+            <summary>
+            Set the working thread in stop state.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.Trace">
+            <summary>
+            Static trace tool for logging.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Debug(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Debug".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Message(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Message".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Warning(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Warning".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Error(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Error".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Exception(System.Exception,System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Error". It will log the stack trace of the exception given.
+            </summary>
+            <param name="exception"> The exception used to extract the trace dump.</param>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Exception(System.Exception)">
+            <summary>
+            Logs a message with level "Error". It will log the stack trace of the exception given.
+            </summary>
+            <param name="exception"> The exception used to extract the trace dump.</param>
+        </member>
+        <member name="T:Tenaris.Library.Log.TraceAttribute">
+            <summary>
+            A AOP attribute to trace the execution of a class/method. Add this to a class or method in order to
+            automatically log enters and leaves (both success or errors).
+            The level of log is pretty high, including methods parameters (both names and values), and results.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.TraceAttribute._logParameters">
+            <summary>
+            Message to log when a method is entered.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.CompileTimeInitialize(System.Reflection.MethodBase)">
+            <summary>
+            AOP Internal method. DO NOT CALL IT.
+            </summary>
+            <param name="method">The method to inspect at compile time.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.OnEntry(PostSharp.Laos.MethodExecutionEventArgs)">
+            <summary>
+            AOP Internal method. DO NOT CALL IT.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.OnExit(PostSharp.Laos.MethodExecutionEventArgs)">
+            <summary>
+            AOP Internal method. DO NOT CALL IT.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.#ctor(System.Boolean)">
+            <summary>
+            </summary>
+            <param name="_logParameters"></param>
+        </member>
+    </members>
+</doc>

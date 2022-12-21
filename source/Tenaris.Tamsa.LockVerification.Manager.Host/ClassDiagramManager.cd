@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Shared.EventNotifier&lt;TEventArgs&gt;">
+    <Position X="6.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Shared.LastVerificationChangeEventArgs">
+    <Position X="6.25" Y="2.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.EventArgs">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Shared.LockVerificationHistory">
+    <Position X="6.25" Y="5.25" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Shared.LockVerificationStatusChangeEventArgs">
+    <Position X="11.5" Y="2.75" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Shared.TransactionResult">
+    <Position X="9.25" Y="0.5" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Shared.Verification">
+    <Position X="9.25" Y="5.25" Width="2.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Constants">
+    <Position X="12.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.DataAccessClass">
+    <Position X="12.5" Y="5.25" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Factory">
+    <Position X="6.25" Y="9.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Tenaris.Library.Framework.Factory.Factory&lt;TEntity&gt;">
+    <Position X="6.25" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.LockVerificationManager">
+    <Position X="9.25" Y="9.25" Width="2.75" />
+    <InheritanceLine Type="Tenaris.Manager.Forum.Shared.ManagerBase" ManuallyRouted="true">
+      <Path>
+        <Point X="5.75" Y="15.407" />
+        <Point X="8.675" Y="15.407" />
+        <Point X="8.675" Y="12.407" />
+        <Point X="9.25" Y="12.407" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tenaris.Manager.Forum.Shared.ManagerBase">
+    <Position X="3" Y="10.75" Width="2.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.ManagerConfiguration">
+    <Position X="12.5" Y="7.75" Width="3.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.StoredProcedures">
+    <Position X="16.25" Y="2.5" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Tenaris.Tamsa.LockVerification.Manager.StoredProcedures.Fields">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="Tenaris.Tamsa.LockVerification.Manager.StoredProcedures.Parameters">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Utility">
+    <Position X="12.5" Y="12.75" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Host.Host">
+    <Position X="16.25" Y="13.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAACAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Host.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tenaris.Tamsa.LockVerification.Manager.Host.Program">
+    <Position X="12.5" Y="14.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Tenaris.Tamsa.LockVerification.Manager.Shared.ILockVerificationManager">
+    <Position X="3" Y="2.25" Width="2.25" />
+    <InheritanceLine Type="System.IDisposable" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.5" Y="6" />
+        <Point X="1.5" Y="5.625" />
+        <Point X="2.625" Y="5.625" />
+        <Point X="2.625" Y="5.063" />
+        <Point X="3" Y="5.063" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Tenaris.Tamsa.LockVerification.Manager.Shared.ILockVerificationHistory">
+    <Position X="3" Y="6" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Tenaris.Tamsa.LockVerification.Manager.Shared.IEventNotifier&lt;TEventArgs&gt;">
+    <Position X="3" Y="0.5" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Tenaris.Tamsa.LockVerification.Manager.Shared.IVerification">
+    <Position X="0.5" Y="7.5" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Tenaris.Manager.Forum.Shared.IManager">
+    <Position X="0.75" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="Tenaris.Manager.Forum.Shared.IManagerBase">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="System.IDisposable">
+    <Position X="0.75" Y="6" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="Tenaris.Tamsa.LockVerification.Manager.Shared.LockVerificationStatus">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

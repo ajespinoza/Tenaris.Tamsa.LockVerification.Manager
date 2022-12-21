@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenaris.Tamsa.LockVerification.Manager.Shared", "source\Tenaris.Tamsa.LockVerification.Manager.Shared\Tenaris.Tamsa.LockVerification.Manager.Shared.csproj", "{ADA81FFC-A565-4F58-B3C5-22430D00D66D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{96B54694-99C0-445D-849B-08E324FFF207}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manager", "Manager", "{D802B31B-BCC5-4C43-9BCE-BFCBAFE3DB66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenaris.Tamsa.LockVerification.Manager.Host", "source\Tenaris.Tamsa.LockVerification.Manager.Host\Tenaris.Tamsa.LockVerification.Manager.Host.csproj", "{D0A92C3F-A82A-4F74-AD2A-1A218DDDC543}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenaris.Tamsa.LockVerification.Manager", "source\Tenaris.Tamsa.LockVerification.Manager\Tenaris.Tamsa.LockVerification.Manager.csproj", "{0AA155A6-BAFB-4454-A7E3-782B8DFAC0CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADA81FFC-A565-4F58-B3C5-22430D00D66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA81FFC-A565-4F58-B3C5-22430D00D66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA81FFC-A565-4F58-B3C5-22430D00D66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA81FFC-A565-4F58-B3C5-22430D00D66D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A92C3F-A82A-4F74-AD2A-1A218DDDC543}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A92C3F-A82A-4F74-AD2A-1A218DDDC543}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A92C3F-A82A-4F74-AD2A-1A218DDDC543}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A92C3F-A82A-4F74-AD2A-1A218DDDC543}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA155A6-BAFB-4454-A7E3-782B8DFAC0CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA155A6-BAFB-4454-A7E3-782B8DFAC0CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA155A6-BAFB-4454-A7E3-782B8DFAC0CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA155A6-BAFB-4454-A7E3-782B8DFAC0CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ADA81FFC-A565-4F58-B3C5-22430D00D66D} = {96B54694-99C0-445D-849B-08E324FFF207}
+		{D0A92C3F-A82A-4F74-AD2A-1A218DDDC543} = {D802B31B-BCC5-4C43-9BCE-BFCBAFE3DB66}
+		{0AA155A6-BAFB-4454-A7E3-782B8DFAC0CB} = {D802B31B-BCC5-4C43-9BCE-BFCBAFE3DB66}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96F82D70-D64D-4D40-844A-005680ED4B59}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,1005 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tenaris.Library.Log</name>
+    </assembly>
+    <members>
+        <member name="T:Tenaris.Library.Log.AdditionalLogDestination">
+            <summary>
+            Additional Log Destinations besides the standard text log file.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.AdditionalLogDestination.None">
+            <summary>
+            No additional destination log
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.AdditionalLogDestination.Console">
+            <summary>
+            Log to console
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.AssemblyLoadEventArgs">
+            <summary>
+            AssemblyLoad event data
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.AssemblyLoadEventArgs.#ctor(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+            <summary>
+            Initializes a new instance of <see cref="T:Tenaris.Library.Log.AssemblyLoadEventArgs"/>
+            </summary>
+            <param name="assemblies">Loaded assemblies</param>
+        </member>
+        <member name="P:Tenaris.Library.Log.AssemblyLoadEventArgs.Assemblies">
+            <summary>
+            Gets loaded assemblies
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.AssemblyLoadFailedEventArgs">
+            <summary>
+            Assembly load failure event data
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.AssemblyLoadFailedEventArgs.#ctor(System.String,System.Reflection.Assembly)">
+            <summary>
+            Initializes a new instance of AssemblyLoadFailedEventArgs
+            </summary>
+            <param name="assemblyFullName">Failed assembly name</param>
+            <param name="requestingAssembly">Requesting assembly</param>
+        </member>
+        <member name="P:Tenaris.Library.Log.AssemblyLoadFailedEventArgs.AssemblyFullName">
+            <summary>
+            Gets failed assembly name
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.AssemblyLoadFailedEventArgs.RequestingAssembly">
+            <summary>
+            Gets requesting assembly
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.AssemblyLoadNotifier">
+            <summary>
+            Assembly load notifier
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.AssemblyLoadNotifier.#ctor">
+            <summary>
+            Inizializza una nuova istanza di AssemblyLoadNotifier
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.AssemblyLoadNotifier.#ctor(System.AppDomain)">
+            <summary>
+            Inizializza una nuova istanza di AssemblyLoadNotifier
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.AssemblyLoadNotifier.NotifyAssemblies(System.Reflection.Assembly[])">
+            <summary>
+            Processa l'array di assembly e notifica all'esterno quelle non ancora presenti nella lista interna.
+            </summary>
+            <param name="Assemblies"></param>
+        </member>
+        <member name="M:Tenaris.Library.Log.AssemblyLoadNotifier.InvokeEventHandler``1(System.EventHandler{``0}@,System.Object,``0)">
+            <summary>
+            Invoker per event handler 'OnAssemblyLoadHandler'.
+            </summary>
+            <param name="Event">Evento da 'invokare'</param>
+            <param name="sender">Sender dell'evento</param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Tenaris.Library.Log.AssemblyLoadNotifier.GetLoadedAssemblies">
+            <summary>
+            Ritorna la lista degli Assembly attualmente caricati.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:Tenaris.Library.Log.AssemblyLoadNotifier.AssemblyLoad">
+            <summary>
+            Evento di notifica caricamento Assembly
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.AssemblyLoadNotifier.Enabled">
+            <summary>
+            Stato di attivazione.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.AssemblyLoadNotifier.AssemblyLoadData.AddNewVersion(System.Reflection.Assembly)">
+            <summary>
+            Aggiunge nuova versione assembly
+            </summary>
+            <param name="Assembly"></param>
+            <returns>True se la nuova versione non è già stata caricata</returns>
+        </member>
+        <member name="T:Tenaris.Library.Log.AssemblyMultiVersionLoadEventArgs">
+            <summary>
+            Assembly multi-version load event data
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.AssemblyMultiVersionLoadEventArgs.#ctor(System.String,System.Collections.Generic.IEnumerable{System.Version})">
+            <summary>
+            Initializes a new instance of <see cref="T:Tenaris.Library.Log.AssemblyMultiVersionLoadEventArgs"/>
+            </summary>
+            <param name="assemblyName">Assembly name</param>
+            <param name="assemblyVersions">Assembly versions</param>
+        </member>
+        <member name="P:Tenaris.Library.Log.AssemblyMultiVersionLoadEventArgs.AssemblyName">
+            <summary>
+            Gets assembly name
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.AssemblyMultiVersionLoadEventArgs.AssemblyVersions">
+            <summary>
+            Gets assembly versions
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.NoTraceAttribute">
+            <summary>
+            Use this attribute to signal that a specific target on which this attribute is applied should not be hooked by the [Trace] aspect.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.LogConfiguration">
+            <summary>
+            Log configuration class.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.LogConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.Log.LogConfiguration"/> class. 
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.LogConfiguration.GetProcessDirectory">
+            <summary>
+            Returns the current process full directory path.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.Path">
+            <summary>
+            Gets or sets the Path where the log file will be placed. Default value is null.
+            The property returns the current process path if set to null or an empty string.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.MaxFileSize">
+            <summary>
+            Gets or sets the Max log file size. If it is exceeded, the log will be rotated. Default value: 2048.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.MaxFileCount">
+            <summary>
+            Gets or sets the Maximum log file count. This will determine how many log files will be kept before deleting. Default value: 10.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.MsgFormat">
+            <summary>
+            Gets or sets the Message format to use. It used named placedholders so you can build something like 
+            "{TypeChar} {Timestamp:yyyy-MM-dd HH:mm} [{AppDomainName,-20}] {AssemblyName,-15} {IdentString} {Message}". 
+            Default value: TBD.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.DumpStack">
+            <summary>
+            Gets or sets a value indicating whether every time an unhandle exception is logged at the exit of a function, 
+            the full call stack will be logged. Default value: true.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.MaxQueueSize">
+            <summary>
+            Gets or sets the max length of the buffer queue (in message number). Default value: 10000.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.MaxLogDepth">
+            <summary>
+            Gets or sets the max depth above which no msg will be logged.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.LogLevel">
+            <summary>
+            Gets or sets the trace level. All messages with log level higher than this will be excluded.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.TraceAttributeLogLevel">
+            <summary>
+            Gets or sets the trace attribute level. All messages with log level higher than this will be excluded.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.IncludeAssembliesRegEx">
+            <summary>
+            Gets or sets the regex used to filter trace messages by the originating assembly. If this rule matchs it will be included no matter 
+            if the Exclude rule matches too.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.ExcludeAssembliesRegEx">
+            <summary>
+            Gets or sets the regex used to filter trace messages by the originating assembly. 
+            If this rule matchs it will be included no matter if the Exclude rule matches too.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.IncludeFullClasNameRegEx">
+            <summary>
+            Gets or sets the regex used to filter trace messages by the originating source class. Allows filtering by namespace+typename.
+            If this rule matchs it will be included no matter if the Exclude rule matches too.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.ExcludeFullClasNameRegEx">
+            <summary>
+            Gets or sets the regex used to filter trace messages by the originating source class. Allows filtering by namespace+typename. 
+            If this rule matchs it will be excluded if the Exclude rule does not match.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.ExcludePropertyGetterAndSetter">
+            <summary>
+            Gets or sets a value indicating whether to exclude props getters and setters.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.FlushInterval">
+            <summary>
+            Gets or sets the flush interval for the writer. Default value is 1000ms.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.TraceAttributeLogEnabled">
+            <summary>
+            Gets or sets the trace attribute log enable. Disabling the trace attribute log still updates the internal stack.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.LogBaseName">
+            <summary>
+            Gets or sets the default log base name. If not specified, the process name will be used.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.AdditionalLogDestination">
+            <summary>
+            Gets or sets the additional log destinations. If not specified, no additional log destinations will be used.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.NoQueue">
+            <summary>
+            Gets or sets a value indicating whether the log write is enqueued or not.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.LogAssemblyLoad">
+            <summary>
+            Gets or sets a value indicating whether to log assembly load events
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogConfiguration.ColorConsoleLog">
+            <summary>
+            Gets or sets a value indicating whether color messages sent to console
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.Constants">
+            <summary>
+            Internal Log constants
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.LogLevel">
+            <summary>
+            Log level.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogLevel.Debug">
+            <summary>
+            A most detailed message.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogLevel.Message">
+            <summary>
+            A general, informative, message.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogLevel.Warning">
+            <summary>
+            A warning that does not prevents the process from executing but may impact
+            in functionality.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogLevel.Error">
+            <summary>
+            A critic error.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.LogType">
+            <summary>
+            Log type enumeration.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogType.Enter">
+            <summary>
+            Represents an enter event.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogType.Message">
+            <summary>
+            Represents a manually generated message.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.LogType.Leave">
+            <summary>
+            Represents a leave event.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.LogMessage">
+            <summary>
+            A LogMessage with all available data for logging.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.FullClassName">
+            <summary>
+            Gets or sets the full class name that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Timestamp">
+            <summary>
+            Gets or sets timestamp at which the message was generated.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Level">
+            <summary>
+            Gets or sets log level of the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Message">
+            <summary>
+            Gets or sets actual message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ProcessName">
+            <summary>
+            Gets or sets the process name that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ProcessId">
+            <summary>
+            Gets or sets the process name that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.AppDomainName">
+            <summary>
+            Gets or sets the application domain that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ClassName">
+            <summary>
+            Gets or sets the class name that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.MethodName">
+            <summary>
+            Gets or sets the method name that originated the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ThreadName">
+            <summary>
+            Gets or sets the thread name from which the message was created.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ThreadId">
+            <summary>
+            Gets or sets the thread id from which the message was created.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.IdentString">
+            <summary>
+            Gets an identation string that represents de depth of the call stack and direction of the message.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.TypeChar">
+            <summary>
+            Gets a char indicating the type of message (> for enter, - for message, ! for warning, @ for error, &lt; for leave).
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Depth">
+            <summary>
+            Gets or sets the depth in the call stack.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Lap">
+            <summary>
+            Gets or sets time since last message or enter.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.LapFriendlyUnit">
+            <summary>
+            Gets the most significant digits (unit).
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.LapFriendlyValue">
+            <summary>
+            Gets the most significant digits (value).
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.AssemblyName">
+            <summary>
+            Gets or sets the assembly name where the class that generated the message is.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.Type">
+            <summary>
+            Gets or sets the log type. Enter, Message or Leave.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.LogMessage.ForceLog">
+            <summary>
+            Force message log
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.StackFrame">
+            <summary>
+            Represents a frame in the "Enter's" stack.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.TimeStamp">
+            <summary>
+            Gets or sets TimeStamp.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.Initial">
+            <summary>
+            Gets or sets Initial.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.Current">
+            <summary>
+            Gets or sets Current.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.AssemblyName">
+            <summary>
+            Gets or sets AssemblyName.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.MethodName">
+            <summary>
+            Gets or sets MethodName.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.ThreadId">
+            <summary>
+            Gets or sets ThreadId.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.ClassName">
+            <summary>
+            Gets or sets ClassName.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.ThreadName">
+            <summary>
+            Gets or sets ThreadName.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.AppDomainName">
+            <summary>
+            Gets or sets AppDomainName.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.ProcessName">
+            <summary>
+            Gets or sets ProcessName.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.ProcessId">
+            <summary>
+            Gets or sets ProcessName.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.StackFrame.FullClassName">
+            <summary>
+            Gets or sets FullClassName.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.Trace">
+            <summary>
+            Static trace tool for logging.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Debug(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Debug".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.ForceDebug(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Debug".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Message(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Message".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.ForceMessage(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Message".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Warning(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Warning".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.ForceWarning(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Warning".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Error(System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Error".
+            </summary>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Exception(System.Exception,System.String,System.Object[])">
+            <summary>
+            Logs a message with level "Error". It will log the stack trace of the exception given.
+            </summary>
+            <param name="exception"> The exception used to extract the trace dump.</param>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Exception(System.Exception,System.Boolean)">
+            <summary>
+            Logs a message with level "Error". It will log the stack trace of the exception given.
+            </summary>
+            <param name="exception"> The exception used to extract the trace dump.</param>
+            <param name="dumpCallStack">Whether to dump the call stack or not.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.LogMessage(Tenaris.Library.Log.LogLevel,System.String,System.Object[])">
+            <summary>
+            Logs a message with variable level.
+            </summary>      
+            <param name="level"> Message log level</param>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.ForceLogMessage(Tenaris.Library.Log.LogLevel,System.String,System.Object[])">
+            <summary>
+            Logs a message with variable level.
+            </summary>
+            <param name="level"> Message log level</param>
+            <param name="message"> Message to log.</param>
+            <param name="args"> Args to format the message.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Leave(System.String)">
+            <summary>
+            Method called on method exit
+            </summary>
+            <param name="message">Log message</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Trace.Enter(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Method called on method enter
+            </summary>
+            <param name="className">Class name</param>
+            <param name="fullClassName">Full class name</param>
+            <param name="methodName">Method name</param>
+            <param name="assemblyName">Assembly name</param>
+            <param name="message">Log message</param>
+        </member>
+        <member name="P:Tenaris.Library.Log.Trace.LogLevel">
+            <summary>
+            Current log level
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.TraceAttribute">
+            <summary>
+            A AOP attribute to trace the execution of a class/method. Add this to a class or method in order to
+            automatically log enters and leaves (both success or errors).
+            The level of log is pretty high, including methods parameters (both names and values), and results.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.Log.TraceAttribute.logParameters">
+            <summary>
+            Message to log when a method is entered.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.CompileTimeInitialize(System.Reflection.MethodBase,PostSharp.Aspects.AspectInfo)">
+            <summary>
+            AOP Internal method. DO NOT CALL IT.
+            </summary>
+            <param name="method">
+            The method to inspect at compile time.
+            </param>
+            <param name="aspectInfo">
+            The aspect Info.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.CompileTimeValidate(System.Reflection.MethodBase)">
+            <summary>
+            AOP Internal method. DO NOT CALL IT.
+            </summary>
+            <param name="method">
+            The method to inspect at compile time.
+            </param>
+            <returns>
+            A value used to indicate if the aspect can be applied to the given method.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.OnEntry(PostSharp.Aspects.MethodExecutionArgs)">
+            <summary>
+            AOP Internal method. DO NOT CALL IT.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.OnSuccess(PostSharp.Aspects.MethodExecutionArgs)">
+            <summary>
+            
+            </summary>
+            <param name="eventArgs"></param>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.OnExit(PostSharp.Aspects.MethodExecutionArgs)">
+            <summary>
+            AOP Internal method. DO NOT CALL IT.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.TraceAttribute.OnException(PostSharp.Aspects.MethodExecutionArgs)">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="P:Tenaris.Library.Log.TraceAttribute.LogParameters">
+            <summary>
+            Include parameters values in log message
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.TraceAttribute.FullExceptionStack">
+            <summary>
+            Gets or sets a value indicating whether to log full exception stack traces when the method raises an exception.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.Worker">
+            <summary>
+            Log worker class
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Worker.#ctor(Tenaris.Library.Log.WriterConfig,Tenaris.Library.Log.LogConfiguration)">
+            <summary>
+            Initializes a new instance of <see cref="T:Tenaris.Library.Log.Worker"/> class
+            </summary>
+            <param name="writerConfig"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Worker.Enqueue(Tenaris.Library.Log.LogMessage)">
+            <summary>
+            Enqueues a message to be logged.
+            </summary>
+            <param name="msg">Message to log.</param>
+        </member>
+        <member name="M:Tenaris.Library.Log.Worker.Start">
+            <summary>
+            Set the working thread in running state.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Worker.Stop">
+            <summary>
+            Set the working thread in stop state.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.Worker.NeedsToBeLogged(Tenaris.Library.Log.LogMessage)">
+            <summary>
+            Checks if the specifed message can be logged.
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Tenaris.Library.Log.Worker.LogLevel">
+            <summary>
+            Gets/sets the current log level
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.WriterConfig">
+            <summary>
+            LogWriter class configuration
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.WriterConfig.MaxFileCount">
+            <summary>
+            Gets the maximum file count
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.WriterConfig.MaxSize">
+            <summary>
+            Gets the maximum file size (in kilobytes)
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.WriterConfig.Path">
+            <summary>
+            Gets/sets the Log path
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.WriterConfig.BaseName">
+            <summary>
+            Gets the log basename
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.WriterConfig.FlushInterval">
+            <summary>
+            Gets the log flush interval
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.WriterConfig.LogLevel">
+            <summary>
+            Gets the log level
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.WriterConfig.AdditionalLogDestination">
+            <summary>
+            Gets/sets additiona log destinations
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.WriterConfig.LogToConsole">
+            <summary>
+            Returns true if the Console log destination is enabled
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.WriterConfig.ColorConsoleLog">
+            <summary>
+            Returns true if messages sent to console are colored
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.LogWriter">
+            <summary>
+            LogWriter class
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.LogWriter.#ctor(Tenaris.Library.Log.WriterConfig)">
+            <summary>
+            Initializes a new instance of LogWriter class
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:Tenaris.Library.Log.LogWriter.WriteLine(System.String)">
+            <summary>
+            Writes a new log line
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:Tenaris.Library.Log.LogWriter.Flush">
+            <summary>
+            Flushes the log writer
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.Log.LogWriter.ReleaseWriter">
+            <summary>
+            Closes the log writer
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.Log.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.AddingDuplicateElement">
+            <summary>
+              Looks up a localized string similar to Trying to insert duplicated element. An element with the Key: &apos;{0}&apos; already exists in the container..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.ArgumentValueShouldNotBeAnEmptyString">
+            <summary>
+              Looks up a localized string similar to {0} argument value should not be an empty string.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.CallingMethodThrownAnException">
+            <summary>
+              Looks up a localized string similar to Calling {0} thrown an exception.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Command_CreateCommand_NullInstanceReturned">
+            <summary>
+              Looks up a localized string similar to Calling CreateCommand() returned a null instance..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.CommandData_UnsupportedMemberType">
+            <summary>
+              Looks up a localized string similar to Unsupported Member type: {0}.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.CommandDefinitionMissing">
+            <summary>
+              Looks up a localized string similar to No Command definition found on method: &apos;{0}.{1}&apos;. You must specify either a CommandInvoke() attribute or a CommandDefinition attribute..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Connection_CreateConnection_NullReferenceReturned">
+            <summary>
+              Looks up a localized string similar to Create Connection returned a null reference.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.ConsoleRedirectorErrorReadingData">
+            <summary>
+              Looks up a localized string similar to Error reading data from standard output or error. Loop will keep going but some message might be lost. Message: {0}.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Container_Get_NoElementFoundByKey">
+            <summary>
+              Looks up a localized string similar to Couldn&apos;t find an element inside the given container with the requested key value: {0}.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Container_Get_NoElementFoundByPredicate">
+            <summary>
+              Looks up a localized string similar to Couldn&apos;t find an element inside the given container for which the given predicate returns true..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.CouldntConvertValueThisToThat">
+            <summary>
+              Looks up a localized string similar to Couldn&apos;t convert the value {0} to {1}.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.EntityCannotBeFound">
+            <summary>
+              Looks up a localized string similar to Couldn&apos;t find an item with id = &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.EntityNotFound">
+            <summary>
+              Looks up a localized string similar to Cannot find a entity of type: {0} with identity: {1}=&apos;{2}&apos;.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.EventDispatcher_CouldNotGetAISynchronizeInvokeFromTheSender">
+            <summary>
+              Looks up a localized string similar to Could not get a ISynchronizeInvoke from the sender..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.EventDispatcher_CouldNotGetAISynchronizeInvokeFromTheTarget">
+            <summary>
+              Looks up a localized string similar to Could not get a ISynchronizeInvoke from the target..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.EventHandlerExtension_HandleErrorDispatchOfEventFailedForTarget_0_TheDisconnectValueIs1_TheExcepcionWas_2_">
+            <summary>
+              Looks up a localized string similar to Dispatch of event failed for target {0}. The disconnect value is {1}. The Excepcion was &quot;{2}&quot;..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Factory_Create_Values_is_null_">
+            <summary>
+              Looks up a localized string similar to Values is null..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Factory_Fill_Source_is_null_">
+            <summary>
+              Looks up a localized string similar to Source is null..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Factory_Fill_Values_is_null">
+            <summary>
+              Looks up a localized string similar to Values is null.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.GraphCycleFoundError_CircularReferenceFound">
+            <summary>
+              Looks up a localized string similar to The graph contains a circular reference..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.InvokedMethodReturnedNullInstance">
+            <summary>
+              Looks up a localized string similar to Method {0}.{1} returned a null exception instance..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.MustSpecifyRowTypeForDataTable">
+            <summary>
+              Looks up a localized string similar to Type for row metadata is not defined in method: &apos;{0}&apos;. To be able to define a method that returns a DataTable you *must* apply the Command attribute to a generic method *or* apply the RowType attribute to it indicating which type to use as row metadata (a class or struct)..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.NotAnEnumType">
+            <summary>
+              Looks up a localized string similar to The type specified is not an Enum.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Null">
+            <summary>
+              Looks up a localized string similar to (null).
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.ProcessSingleton_GetInstance_TypeAssemblyIsNull">
+            <summary>
+              Looks up a localized string similar to Type {0} cannot be used since its assembly is null.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.RemotingFactory_TypeNotFoundRegistered">
+            <summary>
+              Looks up a localized string similar to The Type &apos;{0}&apos; was not found in the WellKnown client registry! Maybe you&apos;re missing the correct configuration values within your .config file..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.RemotingWrapper_AbortingTheConnectionCheckerThread">
+            <summary>
+              Looks up a localized string similar to Aborting the connection checker thread..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.RemotingWrapper_CheckConnectionRemoteObjectConnectionLostExceptionWas_0_">
+            <summary>
+              Looks up a localized string similar to Remote object connection lost. Exception was: &quot;{0}&quot;.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Repository_MemberHasNoCommandDefinitionAttached">
+            <summary>
+              Looks up a localized string similar to Member {0} has no command definition attached.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.SingletonInitializeNotCalledYet">
+            <summary>
+              Looks up a localized string similar to This singleton class &apos;{0}&apos; requires special initialization handling that was not done yet, and it cannot be created on-demand. Maybe you should not be using this class in the context you&apos;re using it? The most probable error is that this code is being executed in the wrong AppDomain (i.e. one that doesn&apos;t host the requested singleton type).
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.SingletonInstanceAlreadyInitialized">
+            <summary>
+              Looks up a localized string similar to The singleton instance is already initialized..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.SingletonInstanceTypeInvalid">
+            <summary>
+              Looks up a localized string similar to The instance given (type: &apos;{0}&apos;) is not convertible to the required singleton type: &apos;{1}&apos;. In order to use this class the type parameter should be a class that inherits from {2}.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.SourceColumnNotFoundInDataReader">
+            <summary>
+              Looks up a localized string similar to Field lookup error: failed to find a column with name: &apos;{0}&apos; in result set returned from the underlying data source. It happened when assigning property values to instance of class: &apos;{1}&apos; while processing property &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.SpecifiedUnitNotFoundInDictionary">
+            <summary>
+              Looks up a localized string similar to The specified unit is not defined in the dictionary..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.StructTypeHasNoMembers">
+            <summary>
+              Looks up a localized string similar to The specified TStructType argument ({0}) has no members and zero size.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.StructTypeHasNoStructLayoutApplied">
+            <summary>
+              Looks up a localized string similar to The specified TStructType argument ({0}) for this generic class should be an struct with an StructLayout attribute of kind LayoutKind.Sequential applied.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.StructTypeSizeMustBeExactMultipleOfValueType">
+            <summary>
+              Looks up a localized string similar to The TStructType ({0}) size ({2}) should be an exact multiple of the TValueType ({1}) size ({3}).
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.TraceMessageRepeatedNTimes">
+            <summary>
+              Looks up a localized string similar to -- Message repeated {0} times..
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.TraceUndefinedFileBaseName">
+            <summary>
+              Looks up a localized string similar to UNDEFINED.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Worker_ExceptionThrownOnFinalization">
+            <summary>
+              Looks up a localized string similar to Exception thrown on finalization.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Worker_OperationStillInProgress">
+            <summary>
+              Looks up a localized string similar to Operation still in progress.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.Log.Properties.Resources.Worker_OperationTimedout">
+            <summary>
+              Looks up a localized string similar to Operation timedout after a wait of {0}.
+            </summary>
+        </member>
+    </members>
+</doc>

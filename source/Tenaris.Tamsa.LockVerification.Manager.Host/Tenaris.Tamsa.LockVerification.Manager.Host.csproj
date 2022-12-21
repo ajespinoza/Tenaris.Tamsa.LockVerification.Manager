@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D0A92C3F-A82A-4F74-AD2A-1A218DDDC543}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tenaris.Tamsa.LockVerification.Manager.Host</RootNamespace>
+    <AssemblyName>Tenaris.Tamsa.LockVerification.Manager.Host</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\04-CastleDynamicProxy\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\04-CastleDynamicProxy\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\07-PostSharp\PostSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Laos, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\07-PostSharp\PostSharp.Laos.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tenaris.Library.ConnectionMonitor">
+      <HintPath>..\..\_temp\_bin\02-Proxy\Tenaris.Library.ConnectionMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.DbClient, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c58e4ef934a092e9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\06-DbClient\Tenaris.Library.DbClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Framework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=d69ca37b4d4b73b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\00-Framework\Tenaris.Library.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Log">
+      <HintPath>..\..\_temp\_bin\03-Log\Tenaris.Library.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Proxy">
+      <HintPath>..\..\_temp\_bin\02-Proxy\Tenaris.Library.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Shared, Version=4.1.0.0, Culture=neutral, PublicKeyToken=1e815cbaa9d1521f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\01-Shared\Tenaris.Library.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Manager.Forum.Shared, Version=4.1.0.0, Culture=neutral, PublicKeyToken=8a748c80852b8187, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\05-Forum\Tenaris.Manager.Forum.Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Host.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagramManager.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tenaris.Tamsa.LockVerification.Manager.Shared\Tenaris.Tamsa.LockVerification.Manager.Shared.csproj">
+      <Project>{ada81ffc-a565-4f58-b3c5-22430d00d66d}</Project>
+      <Name>Tenaris.Tamsa.LockVerification.Manager.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tenaris.Tamsa.LockVerification.Manager\Tenaris.Tamsa.LockVerification.Manager.csproj">
+      <Project>{0aa155a6-bafb-4454-a7e3-782b8dfac0cb}</Project>
+      <Name>Tenaris.Tamsa.LockVerification.Manager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0AA155A6-BAFB-4454-A7E3-782B8DFAC0CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tenaris.Tamsa.LockVerification.Manager</RootNamespace>
+    <AssemblyName>Tenaris.Tamsa.LockVerification.Manager</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tenaris.Library.ConnectionMonitor, Version=4.1.0.0, Culture=neutral, PublicKeyToken=69f947a774df559b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\02-Proxy\Tenaris.Library.ConnectionMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.DbClient, Version=4.1.0.0, Culture=neutral, PublicKeyToken=c58e4ef934a092e9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\06-DbClient\Tenaris.Library.DbClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Framework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=d69ca37b4d4b73b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\00-Framework\Tenaris.Library.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Log, Version=4.1.0.0, Culture=neutral, PublicKeyToken=bbb03b5ff4bbb68b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\03-Log\Tenaris.Library.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Library.Proxy">
+      <HintPath>..\..\_temp\_bin\02-Proxy\Tenaris.Library.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Manager.Forum.Shared, Version=4.1.0.0, Culture=neutral, PublicKeyToken=8a748c80852b8187, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\05-Forum\Tenaris.Manager.Forum.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Tenaris.Manager.Mail.Shared, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_temp\_bin\08-Mail\Tenaris.Manager.Mail.Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\ManagerConfiguration.cs" />
+    <Compile Include="DataAccess\DataAccessClass.cs" />
+    <Compile Include="DataAccess\StoredProcedures.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="LockVerificationManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tenaris.Tamsa.LockVerification.Manager.Shared\Tenaris.Tamsa.LockVerification.Manager.Shared.csproj">
+      <Project>{ada81ffc-a565-4f58-b3c5-22430d00d66d}</Project>
+      <Name>Tenaris.Tamsa.LockVerification.Manager.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

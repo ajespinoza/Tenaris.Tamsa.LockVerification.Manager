@@ -1,0 +1,2221 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tenaris.Library.System</name>
+    </assembly>
+    <members>
+        <member name="T:Tenaris.Library.System.Diagnostics.ProcessExtensionMethod">
+            <summary>
+            Process extension methods.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Diagnostics.ProcessExtensionMethod.CanStart(System.Diagnostics.Process)">
+            <summary>
+            Verifies if a previous instance of the process is already running. 
+            </summary>
+            <param name="process">
+            The process on which to check for previous instances.
+            </param>
+            <returns>
+            True if it is ok to keep the process running or false if the process should exit.
+            </returns>    
+        </member>
+        <member name="M:Tenaris.Library.System.Diagnostics.ProcessExtensionMethod.CanStart(System.Diagnostics.Process,System.Int32)">
+            <summary>
+            Verifies if previous instances of the process are already running.
+            </summary>
+            <param name="process">
+            The process on which to check for previous instances.
+            </param>
+            <param name="maxInstances">
+            The number of max instances.
+            </param>
+            <returns>
+            True if it is ok to keep the process running or false if the process should exit.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Diagnostics.ProcessExtensionMethod.CanStart(System.Diagnostics.Process,System.Int32,System.Boolean)">
+            <summary>
+            Exit the current process if previous ones are already running.
+            </summary>
+            <param name="process">
+            The process on which to check for previous instances.
+            </param>
+            <param name="maxInstances">
+            The number of max instances.
+            </param>
+            <param name="autoKill">
+            Whether to kill or not the current process if result is false.
+            </param>
+            <returns>
+            True if it is ok to keep the process running or false if the process should exit.
+            </returns>    
+        </member>
+        <member name="T:Tenaris.Library.System.Factory.Factory`1">
+            <summary>
+            Specific Factory for the given entity. Creates the instance with the configuration 
+            received from the FactoryProvider.
+            </summary>
+            <typeparam name="TEntity">The type of entity to instantiate.</typeparam>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.FactoryBase.Configure">
+            <summary>
+            This method requires SectionName to be a valid ConfigurationSection name in the configuration file.
+            It searches this section and attempts to store it as the property Configuration.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.FactoryBase.Configure(System.Object)">
+            <summary>
+            Stores the ConfigurationSection provided in the property Configuration, and executes
+            abstract method DoConfigure(), in case any child factories need to take action with the
+            configuration.
+            </summary>
+            <param name="config">ConfigurationSection corresponding to the entity to instantiate.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.FactoryBase.Configure(System.String)">
+            <summary>
+            Executes the abstract method DeserializeConfiguration, expecting child factories to return 
+            a valid ConfigurationSection, wich should be the entity instance configuration required.
+            </summary>
+            <param name="configString">The raw XML of the configuration for the entity instance.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.FactoryBase.DoConfigure">
+            <summary>
+            Allows child factories to take action on Configuration received.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.FactoryBase.DeserializeConfiguration(System.String)">
+            <summary>
+            Parses the raw XML of the configuration for the entity instance into a valid ConfigurationSection
+            </summary>
+            <param name="configString">The raw XML of the configuration section.</param>
+            <returns>A ConfigurationSection corresponding to the entity to instantiate.</returns>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryBase.SectionName">
+            <summary>
+            If section name is provided. The factory will attempt to obtain the given 
+            section by its name, and store it as the property Configuration.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryBase.ConfigurationProvider">
+            <summary>
+            Devuelve el objeto Configuration que es donde se obtuvo la configuración de la instancia actual
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryBase.Configuration">
+            <summary>
+            The configuration section corresponding to the entity to instantiate. If any.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Tenaris.Library.System.Factory.IFactory`1" -->
+        <member name="M:Tenaris.Library.System.Factory.IFactory`1.Create">
+            <summary>
+            Creates a new instance of TEntity based on the configuration provided.
+            </summary>
+            <returns>The appropiate TEntity instance with the configuration applied.</returns>
+        </member>
+        <member name="T:Tenaris.Library.System.Factory.FactoryConfiguration">
+            <summary>
+            This class represents and processes FactoryProvider configurations. Containing the type of factory to create, if it should be
+            Singleton or not, and the section [optional] to search for the entity to instantiate configuration. If no section is provided
+            the configuration is expected to be contained inside this FactoryProvider configuration.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.FactoryConfiguration.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.FactoryConfiguration.DeserializeElement(System.Xml.XmlReader,System.Boolean)">
+            <summary>
+            Standard .Net method for ConfigurationElement deserealization. Maps this class properties with
+            the Xml configuration file.
+            </summary>
+            <param name="reader">Provided by the Framework. Contains the raw Xml of the configuration.</param>
+            <param name="serializeCollectionKey">Provided by the Framework.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.FactoryConfiguration.SerializeToXmlElement(System.Xml.XmlWriter,System.String)">
+            <summary>
+            Standard .Net method for ConfigurationElement deserealization. Maps this class properties with
+            the Xml configuration file.
+            </summary>
+            <param name="writer">Provided by the Framework, writes the properties of this configuration to the Xml file</param>
+            <param name="elementName">Provided by the Framework, allows for a override of the element name of this configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryConfiguration.InstanceConfiguration">
+            <summary>
+            If no section name is provided, this property will contain the raw XML with what should be
+            the configuration required for the entity instance.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryConfiguration.FactoryType">
+            <summary>
+            Type (as Full Name) of the Factory to create.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryConfiguration.IsSingleton">
+            <summary>
+            Should this factory be treated as a Singleton.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryConfiguration.SectionName">
+            <summary>
+            If SectionName is provided, FactoryProvider will search for this section in order
+            to send this configuration to the Factory that will create the entity instance.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Factory.FactoryProvider">
+            <summary>
+            Main Factory class. Generates Factories for any given entity using the configuration
+            specified.
+            FactoryProvider internally stores all Factories created as Singleton.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Tenaris.Library.System.Factory.FactoryProvider.CreateFactory``1(System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:Tenaris.Library.System.Factory.FactoryProvider.CreateEntity``1(System.String)" -->
+        <member name="M:Tenaris.Library.System.Factory.FactoryProvider.CreateEntity(System.String)">
+            <summary>
+            Obtiene el factory de nombre factoryName e invoca al create por reflection evitando el casteo, ya que no se conoce el tipo de la entidad a crear
+            </summary>
+            <param name="factoryName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryProvider.Instance">
+            <summary>
+            Singleton accesor to FactoryProvider.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryProvider.Configurations">
+            <summary>
+            A Dictionary with all the configurations stored in this factory. Each configuration
+            is created and stored the first time it's read. Even if different instances of the same
+            Factory are required, configurations are reused.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.FactoryProvider.Factories">
+            <summary>
+            A dictionary containing the list of factories created. If a factory is requested as
+            Singleton, this dictionary stores such a factory. If a factory of the same type is then requested
+            to the FactoryProvider, it will return the instance stored in this dictionary.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Factory.InstanceBuilder">
+            <summary>
+            Crea instancias de tipo IConfigurable y las configura. La configuración tiene que ser serializable en XML y es el nodo hijo de esta clase.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.InstanceBuilder.SetConfiguration(System.Object)">
+            <summary>
+            Asigna la configuración de la instancia a crear.
+            </summary>
+            <param name="config">Instancia de la configuracion. Tiene que ser serializable en xml</param>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.InstanceBuilder.SetConfiguration(System.Object,System.String)">
+            <summary>
+            Asigna la configuración de la instancia a crear. 
+            </summary>
+            <param name="config">Instancia de la configuracion. Tiene que ser serializable en xml</param>
+            <param name="rootName">Nombre a usar para el root de xml al serializar la configuración</param>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.InstanceBuilder.GetConfiguration(System.Type)">
+            <summary>
+            Obtiene la configuración para la instancia del elemento.
+            </summary>
+            <param name="ofType">Tipo de la configuración</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.InstanceBuilder.Create">
+            <summary>
+            Crea la instancia y la configura.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.InstanceBuilder.Create(System.Object[])">
+            <summary>
+            Crea la instancia y la configura.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.InstanceBuilder.Create``1">
+            <summary>
+            Crea la instancia y la configura.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.InstanceBuilder.Type">
+            <summary>
+            Tipo de la instancia a crear
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.InstanceBuilder.TypeName">
+            <summary>
+            Nombre completo de la instancia a crear
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.InstanceBuilder.XmlConfiguration">
+            <summary>
+            Configuration serializada en xml de la instancia a construir
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Factory.RemotingConfiguration">
+            <summary>
+            Provides means to replace the Remoting configuration and contains the Url to
+            create the proxy to a published object.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.RemotingConfiguration.DeserializeElement(System.Xml.XmlReader,System.Boolean)">
+            <summary>
+            Check Framework Documentation.
+            </summary>
+            <param name="reader"></param>
+            <param name="serializeCollectionKey"></param>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.RemotingConfiguration.SerializeToXmlElement(System.Xml.XmlWriter,System.String)">
+            <summary>
+            Check Framework Documentation.
+            </summary>
+            <param name="writer"></param>
+            <param name="elementName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.RemotingConfiguration.GetSchema">
+            <summary>
+            Check Framework Documentation.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.RemotingConfiguration.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            Check Framework Documentation.
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.RemotingConfiguration.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Check Framework Documentation.
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="P:Tenaris.Library.System.Factory.RemotingConfiguration.Url">
+            <summary>
+            The Url for the proxy.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Factory.RemotingFactory`1">
+            <summary>
+            Creates a proxy to the TEntity published in the Url provided in the configuration.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.RemotingFactory`1.DeserializeConfiguration(System.String)">
+            <summary>
+            Deserializes the Xml configuration provided by the FactoryProvider.
+            </summary>
+            <param name="configString">The raw XML of the configuration section corresponding to this TEntity proxy.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.RemotingFactory`1.DoConfigure">
+            <summary>
+            Stores the configuration as a RemotingConfiguration for ease of use.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.RemotingFactory`1.Create">
+            <summary>
+            Creates the proxy. Prior to creating the proxy, if FileName was provided in the configuration
+            the RemotingConfiguration.Configure is called with the FileName as parameter. Otherwise the same
+            method is called, with AppDomain.CurrentDomain.SetupInformation.ConfigurationFile as parameter.
+            </summary>
+            <returns>The proxy instance corresponding to the object published in the given Url</returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Factory.RemotingFactoryConfigurationSection.DeserializeElement(System.Xml.XmlReader,System.Boolean)">
+            <summary>
+            Standard .Net method for ConfigurationElement deserealization. Maps this class properties with
+            the Xml configuration file.
+            </summary>
+            <param name="reader">Provided by the Framework. Contains the raw Xml of the configuration.</param>
+            <param name="serializeCollectionKey">Provided by the Framework.</param>
+        </member>
+        <member name="T:Tenaris.Library.System.Helpers.ConvertHelper">
+            <summary>
+            Converter helper
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Helpers.ConvertHelper.IsDouble(System.String)">
+            <summary>
+            Check if  value is double
+            </summary>
+            <param name="value">Value to be checked</param>
+            <returns>True if value is double</returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Helpers.ConvertHelper.ToBoolean(System.String)">
+            <summary>
+            Convert value to bool
+            </summary>
+            <param name="value">Value to be converted</param>
+            <returns>The converted value</returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Helpers.ConvertHelper.ToDouble(System.String)">
+            <summary>
+            Convert string value to double
+            </summary>
+            <param name="value">Value to be converted</param>
+            <returns>The converted value</returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Helpers.ConvertHelper.ToInt32(System.String)">
+            <summary>
+            Convert string value to int
+            </summary>
+            <param name="value">Value to be converted</param>
+            <returns>The converted value</returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Helpers.ConvertHelper.ToInt16(System.String)">
+            <summary>
+            Convert string value to short
+            </summary>
+            <param name="value">Value to be converted</param>
+            <returns>The converted value</returns>
+        </member>
+        <member name="T:Tenaris.Library.System.Interop.Connection`1">
+            <summary>
+            A connection to a COM ConnectionPoint.
+            </summary>
+            <typeparam name="TSinkType">
+            The type of the sink that will recieve the events.
+            </typeparam>
+        </member>
+        <member name="T:Tenaris.Library.System.Interop.IConnection`1">
+            <summary>
+            Generic version of the IConnection interface.
+            </summary>
+            <typeparam name="TSinkType">Type of the event sink.
+            </typeparam>
+        </member>
+        <member name="T:Tenaris.Library.System.Interop.IConnection">
+            <summary>
+            A connection between two COM objects.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.IConnection.Disconnect">
+            <summary>
+            Closes the connection.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.IConnection.Cookie">
+            <summary>
+            Gets connection cookie.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.IConnection.Source">
+            <summary>
+            Gets connection source.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.IConnection.IsConnected">
+            <summary>
+            Gets a value indicating whether the connection is connected.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.IConnection.IsDisconnected">
+            <summary>
+            Gets a value indicating whether the connection is disconnected.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.IConnection.Iid">
+            <summary>
+            Gets Iid of the COM interface associated with the connection.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.IConnection.Sink">
+            <summary>
+            Gets the sink of the events.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.IConnection`1.Sink">
+            <summary>
+            Gets the event sink.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.Connection`1.Disconnect">
+            <summary>
+            Disconnects from the connection point.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.Connection`1.Dispose">
+            <summary>
+            Disposes the event sink.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Connection`1.Source">
+            <summary>
+            Gets the event source.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Connection`1.Iid">
+            <summary>
+            Gets the Iid of the connected COM interface.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Connection`1.Cookie">
+            <summary>
+            Gets the cookie associated with this connection.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Connection`1.IsConnected">
+            <summary>
+            Gets a value indicating whether the connection is connected.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Connection`1.IsDisconnected">
+            <summary>
+            Gets a value indicating whether the connection is disconnected.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Connection`1.Tenaris#Library#System#Interop#IConnection#Sink">
+            <summary>
+            Gets a non generic version of the sink.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Connection`1.Sink">
+            <summary>
+            Gets the event sink that will recieve COM events.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Interop.Events">
+            <summary>
+            A helper class that encapsulates the use of COM ConnectionPoints.
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.System.Interop.Events.NullCookie">
+            <summary>
+            A constant representing a null cookie.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.Events.Connect(System.Object,System.Guid,System.Object,System.Int32@)">
+            <summary>
+            Connects a sink to a COM ConnectionPoint.
+            </summary>
+            <param name="source">
+            The COM source object.
+            </param>
+            <param name="iid">
+            The iid of the interface to connect to.
+            </param>
+            <param name="sink">
+            The sink that will receive the events.
+            </param>
+            <param name="cookie">
+            The cookie linked to this connection.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.Events.Disconnect(System.Object,System.Guid,System.Int32@)">
+            <summary>
+            Discconects a connection to a COM ConnectionPoint.
+            </summary>
+            <param name="source">
+            The source object.
+            </param>
+            <param name="iid">
+            The iid of the COM interface.
+            </param>
+            <param name="cookie">
+            The cookie associated with this connection.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.Events.Connect``1(``0)">
+            <summary>
+            Connects the sink to its associated source.
+            </summary>
+            <param name="sink">
+            The sink that will receive the events.
+            </param>
+            <typeparam name="TSink">
+            The type of the sink.
+            </typeparam>
+            <returns>
+            The newly created connection.
+            </returns>
+        </member>
+        <member name="T:Tenaris.Library.System.Interop.ISink">
+            <summary>
+            Represents a sink of COM ConnectionPoint events.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.ISink.Source">
+            <summary>
+            Gets event source.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.ISink.Iid">
+            <summary>
+            Gets the Iid associated with this event.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Interop.ISink`1">
+            <summary>
+            Generic version of the ISink interface.
+            </summary>
+            <typeparam name="TSourceType">
+            The type of the source.
+            </typeparam>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.ISink`1.Source">
+            <summary>
+            Gets the event source.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Interop.Sink`1">
+            <summary>
+            A sink of COM Events.
+            </summary>
+            <typeparam name="TSourceType">The source type.
+            </typeparam>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.Sink`1.#ctor(`0,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Interop.Sink`1"/> class.
+            </summary>
+            <param name="source">
+            The source.
+            </param>
+            <param name="eventsIntf">
+            The events intf.
+            </param>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Sink`1.Tenaris#Library#System#Interop#ISink#Source">
+            <summary>
+            Gets Source.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Sink`1.Iid">
+            <summary>
+            Gets the Iid of the COM interface.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.Sink`1.Source">
+            <summary>
+            Gets Source.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Interop.ComWrap`1">
+            <summary>
+            A wrapper of COM objects.
+            </summary>
+            <typeparam name="T">The type of the managed class used to wrap de COM object.
+            </typeparam>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.ComWrap`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Interop.ComWrap`1"/> class.
+            </summary>
+            <param name="instance">
+            The instance.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.ComWrap`1.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Tenaris.Library.System.Interop.ComWrap`1"/> class. 
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.ComWrap`1.op_Implicit(Tenaris.Library.System.Interop.ComWrap{`0})~`0">
+            <summary>
+            Overrides the cast operator. Allows to cast between ComWrap and T automatically.
+            </summary>
+            <param name="x">
+            The ComWrap version of the object.
+            </param>
+            <returns>
+            The underlying object.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.ComWrap`1.op_Implicit(Tenaris.Library.System.Interop.ComWrap{`0})~System.Boolean">
+            <summary>
+            Overrides the bool operator.
+            </summary>
+            <param name="x">
+            The object on which the operation is performed.
+            </param>
+            <returns>
+            True if the underlying object is null
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.ComWrap`1.op_LogicalNot(Tenaris.Library.System.Interop.ComWrap{`0})">
+            <summary>
+            Overrides the ! operator.
+            </summary>
+            <param name="x">
+            The object to compare to.
+            </param>
+            <returns>
+            True if the underlying object is null.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.ComWrap`1.Create(`0)">
+            <summary>
+            Factory for the ComWrap object.
+            </summary>
+            <param name="instance">
+            The instance of the object to wrap.
+            </param>
+            <returns>
+            The ComWrap instance.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.ComWrap`1.Dispose">
+            <summary>
+            Disposes the object.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.ComWrap`1.Dispose(System.Boolean)">
+            <summary>
+            Disposes this object.
+            </summary>
+            <param name="disposing">
+            If true the object will release unmanaged resources.
+            </param>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.ComWrap`1.Instance">
+            <summary>
+            Gets the underlying object instance.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.ComWrap`1.Disposed">
+            <summary>
+            Gets a value indicating whether the object is disposed.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.IO.CompareFileByWriteDate">
+            <summary>
+            A file comparer by date. You can use this to sort an array of paths by file creation time.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.IO.CompareFileByWriteDate.System#Collections#IComparer#Compare(System.Object,System.Object)">
+            <summary>
+            Compares two files by last write date.
+            </summary>
+            <param name="a">
+            File 'a' to compare.
+            </param>
+            <param name="b">
+            File 'b' to compare.
+            </param>
+            <returns>
+            If a is older than b, returns a negative value, if b is older, return a positive value. 
+            If both are the same return a zero.
+            </returns>
+        </member>
+        <member name="T:Tenaris.Library.System.IO.CompareFileBySize">
+            <summary>
+            A file comparer by date. You can use this to sort an array of paths by file creation time.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.IO.CompareFileBySize.System#Collections#IComparer#Compare(System.Object,System.Object)">
+            <summary>
+            Compares two files by size.
+            </summary>
+            <param name="a">
+            File 'a' to compare.
+            </param>
+            <param name="b">
+            File 'b' to compare.
+            </param>
+            <returns>
+            If a is smaller than b, returns a negative value, if b is smaller, return a positive value. 
+            If both are the same size a zero.
+            </returns>
+        </member>
+        <member name="T:Tenaris.Library.System.PrimitiveSerializer`1">
+            <summary>
+            The primitive serializer.
+            </summary>
+            <typeparam name="T">
+            The managed type to serialize/deserealize
+            </typeparam>
+        </member>
+        <member name="M:Tenaris.Library.System.PrimitiveSerializer`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.PrimitiveSerializer`1"/> class.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.PrimitiveSerializer`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.PrimitiveSerializer`1"/> class.
+            </summary>
+            <param name="value">
+            The value.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.PrimitiveSerializer`1.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.PrimitiveSerializer`1"/> class.
+            </summary>
+            <param name="buffer">
+            The buffer.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.PrimitiveSerializer`1.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Tenaris.Library.System.PrimitiveSerializer`1"/> class. 
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.PrimitiveSerializer`1.ToArray">
+            <summary>
+            The to array.
+            </summary>
+            <returns>
+            Returns an array filled with memory representation of the struct member Value
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.PrimitiveSerializer`1.FromArray(System.Byte[])">
+            <summary>
+            Populates a struct from byte array
+            </summary>
+            <param name="data">
+            Byte array with the same disposition of struct member Value
+            </param>
+        </member>
+        <member name="P:Tenaris.Library.System.PrimitiveSerializer`1.Value">
+            <summary>
+            Gets or sets the serializable value
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Reflection.PropertyPath.GetValue(System.String,System.Object)">
+            <summary>
+            Devuelve el valor de la propiedad indicada por 'path'
+            </summary>
+            <param name="path"></param>
+            <param name="from"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Reflection.PropertyPath.SetValue(System.String,System.Object,System.Object)">
+            <summary>
+            Asigna el valor 'value' al objeto 'to' según el path indicado y devuelve 'to'
+            </summary>
+            <param name="path"></param>
+            <param name="value"></param>
+            <param name="to"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Tenaris.Library.System.Remoting.RemotableEvent`1">
+            <summary>
+            Client-side remote event handler.
+            </summary>
+            <typeparam name="TEventArgs">The EventArg associated with this event.</typeparam>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.RemotableEvent`1.Handler(System.Object,`0)">
+            <summary>
+            The entry point for the server-side class to invoke events remotly.
+            </summary>
+            <param name="sender">
+            The event sender.
+            </param>
+            <param name="args">
+            The event args.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.RemotableEvent`1.InitializeLifetimeService">
+            <summary>
+            Overrides the lifetime service initializer so the object is never dipose by GC.
+            </summary>
+            <returns>
+            Always null.
+            </returns>
+        </member>
+        <member name="E:Tenaris.Library.System.Remoting.RemotableEvent`1.Event">
+            <summary>
+            The event to connect from the client side.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Remoting.RemotableEventHandler`1">
+            <summary>
+            The event handler for remotly dispatched events.
+            </summary>
+            <param name="sender">
+            The event sender.
+            </param>
+            <param name="e">
+            The event args.
+            </param>
+            <typeparam name="TEventArgs">
+            The TEventArgs type to use for this event.
+            </typeparam>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Tenaris.Library.System.Remoting.EventHandlerAdapter.CreateDelegateToHandler(Tenaris.Library.System.Remoting.EventHandlerAdapter)" -->
+        <member name="M:Tenaris.Library.System.Remoting.EventHandlerAdapter.Subscribe(System.Object)">
+            <summary>
+            Se suscribe al evento EventName del subject pasado por parámetro.
+            </summary>
+            <param name="subject"></param>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.EventHandlerAdapter.Unsubscribe">
+            <summary>
+            Se desuscribe del event EventName y libera al subject.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Remoting.EventHandlerAdapter.Subject">
+            <summary>
+            Object a ser observado, es el dispara los eventos originales.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Remoting.EventHandlerAdapter.SubjectType">
+            <summary>
+            Tipo del subject.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Remoting.EventHandlerAdapter.DelegateAdapter">
+            <summary>
+            Delegado al handler local. Este handler es el que se utiliza para suscribirse al Subject.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.src.Remoting.EventQueue`1">
+            <summary>
+            TODO: Update summary.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.Enqueue(System.Object,`0)">
+            <summary>
+            Enqueues the specified sender.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The instance containing the event data.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.#ctor(Tenaris.Library.System.src.Threading.WorkerPool,System.EventHandler{`0},System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.src.Remoting.EventQueue`1"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="client">The client.</param>
+            <param name="tries">The tries.</param>
+            <param name="sleepBetweenTries">The sleep between tries.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.#ctor(Tenaris.Library.System.src.Threading.WorkerPool,System.EventHandler{`0},System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.src.Remoting.EventQueue`1"/> class.
+            </summary>
+            <param name="factory">The factory.</param>
+            <param name="client">The client.</param>
+            <param name="sendMultiplesEvents">if set to <c>true</c> [send multiples events].</param>
+            <param name="tries">The tries.</param>
+            <param name="sleepBetweenTries">The sleep between tries.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.GetSchemaDomainPortFromHandler(System.Object,System.String)">
+            <summary>
+            Gets the schema domain port from handler.
+            </summary>
+            <param name="handler">The handler.</param>
+            <param name="defaultText">The default text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.WorkerFinished(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Finished event of the Worker control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="!:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.RaiseEventsProcess(System.Object)">
+            <summary>
+            Raises the events process.
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.RaiseMultipleEvents">
+            <summary>
+            Raises the multiple events.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.RaiseSingleEvents">
+            <summary>
+            Raises the single events.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.CreateMultipleEventArgs(System.Object@)">
+            <summary>
+            Creates the multiple event args.
+            </summary>
+            <param name="sender">The sender.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.EventQueue`1.IsTimeout(System.Exception)">
+            <summary>
+            Determines whether the specified ex is timeout.
+            </summary>
+            <param name="ex">The ex.</param>
+            <returns>
+              <c>true</c> if the specified ex is timeout; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Remoting.EventQueue`1.Client">
+            <summary>
+            Gets or sets the client.
+            </summary>
+            <value>
+            The client.
+            </value>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Remoting.EventQueue`1.DispatchMultipleEvents">
+            <summary>
+            Gets or sets a value indicating whether [dispatch multiple events].
+            </summary>
+            <value>
+            <c>true</c> if [dispatch multiple events]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="E:Tenaris.Library.System.src.Remoting.EventQueue`1.DispacthFinished">
+            <summary>
+            Occurs when [dispacth finished].
+            </summary>
+        </member>
+        <member name="E:Tenaris.Library.System.src.Remoting.EventQueue`1.DispatchError">
+            <summary>
+            Occurs when [dispatch error].
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Remoting.EventQueue`1.InvocationTries">
+            <summary>
+            Invocation number of attempts before sending a communication error.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Remoting.EventQueue`1.InvocationTrySleepTime">
+            <summary>
+            Waiting time (in milliseconds) between invocations attempts.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Remoting.RemotableEventServer`1">
+            <summary>
+            Server-side remote event helper class.
+            </summary>
+            <typeparam name="TEventArgs">
+            The TEventArgs types to be used in this event.
+            </typeparam>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.RemotableEventServer`1.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the RemotableEventServer class.
+            </summary>
+            <param name="disconnectOnError">If true, clients will be disconnected on errors.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.RemotableEventServer`1.#ctor">
+            <summary>
+            Initializes a new instance of the RemotableEventServer class.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.RemotableEventServer`1.InvokeEvent(System.Object,`0)">
+            <summary>
+            Invokes the event on the remote clients.
+            </summary>
+            <param name="sender">The event sender.</param>
+            <param name="args">The event args.</param>
+        </member>
+        <member name="E:Tenaris.Library.System.Remoting.RemotableEventServer`1.ErrorDetected">
+            <summary>
+            This event will be invoked every time an error is detected on the dispatch of a remote event.
+            </summary>
+        </member>
+        <member name="E:Tenaris.Library.System.Remoting.RemotableEventServer`1.Event">
+            <summary>
+            Remote clients connects to this event to recieve notifications.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Remoting.RemotableEventServer`1.ErrorDetectedHandler">
+            <summary>
+            The handler prototype to be invoked when errors are detected on the dispatch of the
+            event.
+            </summary>
+            <param name="sender">The remote-server event.</param>
+            <param name="error">The exception raised while dispatching the event.</param>
+            <param name="client">The target to which the event was being dispatched.</param>
+            <param name="disconnect">A reference boolean that can be used to disconnect
+            the remote event.</param>
+        </member>
+        <member name="T:Tenaris.Library.System.Interop.RemotableSink`3">
+            <summary>
+            A remoteable COM event.
+            </summary>
+            <typeparam name="TOwnerType">
+            The remote event owner type.
+            </typeparam>
+            <typeparam name="TSourceType">
+            The event source type.
+            </typeparam>
+            <typeparam name="TEventArgs">
+            The event args type.
+            </typeparam>
+        </member>
+        <member name="M:Tenaris.Library.System.Interop.RemotableSink`3.#ctor(`0,`1,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Interop.RemotableSink`3"/> class.
+            </summary>
+            <param name="owner">
+            The owner.
+            </param>
+            <param name="source">
+            The source.
+            </param>
+            <param name="eventsIntf">
+            The events intf.
+            </param>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.RemotableSink`3.Owner">
+            <summary>
+            Gets Owner.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Interop.RemotableSink`3.Handler">
+            <summary>
+            Gets Handler.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.ExpressionEval">
+            <summary>
+            This class will evaluate boolean and mathmatical expressions
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.IExpression">
+            <summary>
+            This interface is the base for all of the expression evaluation objects.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.IExpression.Evaluate">
+            <summary>
+            Evaluates the expresion.
+            </summary>
+            <returns>The result of the evaluation.</returns>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.IExpression.Expression">
+            <summary>
+            Gets or sets Expression.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Scripting.ExpressionEval"/> class. 
+            Constructor with string
+            </summary>
+            <param name="expression">
+            string of the Expression to evaluate
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.Evaluate(System.String)">
+            <summary>
+            Static version of the Expression Evaluator
+            </summary>
+            <param name="expressionString">
+            The expression String.
+            </param>
+            <returns>
+            The evaluate.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.Evaluate(System.String,Tenaris.Library.System.Scripting.FireAdditionalFunction)">
+            <summary>
+            Static version of the Expression Evaluator
+            </summary>
+            <param name="expression">
+            expression to be evaluated
+            </param>
+            <param name="handler">
+            attach a custom function handler
+            </param>
+            <returns>
+            The evaluate.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.Evaluate">
+            <summary>
+            Evaluates the expression
+            </summary>
+            <returns>
+            object of the expression return value
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.EvaluateBool">
+            <summary>
+            Evaluates the expression
+            </summary>
+            <returns>
+            bool value of the evaluated expression
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.EvaluateInt">
+            <summary>
+            Evaluates the expression
+            </summary>
+            <returns>
+            integer value of the evaluated expression
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.EvaluateDouble">
+            <summary>
+            Evaluates the expression
+            </summary>
+            <returns>
+            double value of the evaluated expression
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.EvaluateLong">
+            <summary>
+            Evaluates the expression
+            </summary>
+            <returns>
+            long value of the evaluated expression
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.SetVariable(System.String,System.Object)">
+            <summary>
+            Sets a variable's value
+            </summary>
+            <param name="key">
+            variable name
+            </param>
+            <param name="value">
+            variable value
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.ClearVariable(System.String)">
+            <summary>
+            Clear's a variable's value
+            </summary>
+            <param name="key">
+            variable name
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.ToString">
+            <summary>
+            gets a string representation of this expression
+            </summary>
+            <returns>
+            The to string.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.OperatorPrecedence(System.String)">
+            <summary>
+            This method gets the precedence of a binary operator
+            </summary>
+            <param name="strOp">Operation code</param>
+            <returns>
+            The operator precedence.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.PerformBinaryOp(Tenaris.Library.System.Scripting.ExpressionEval.BinaryOp,System.Object,System.Object)">
+            <summary>
+            This routine will actually execute an operation and return its value
+            </summary>
+            <param name="op">
+            Operator Information
+            </param>
+            <param name="v1">
+            left operand
+            </param>
+            <param name="v2">
+            right operand
+            </param>
+            <returns>
+            v1 (op) v2
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.DoSpecialOperator(Tenaris.Library.System.Scripting.ExpressionEval.BinaryOp,System.Object,System.Object)">
+            <summary>
+            This will perform comparison operations based upon data type of value
+            </summary>
+            <param name="op">
+            binary operator
+            </param>
+            <param name="v1">
+            left operand
+            </param>
+            <param name="v2">
+            right operand
+            </param>
+            <returns>
+            return result of operator
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.PerformUnaryOp(Tenaris.Library.System.Scripting.ExpressionEval.UnaryOp,System.Object)">
+            <summary>
+            This routine will actually execute an operation and return its value
+            </summary>
+            <param name="op">
+            Operator Information
+            </param>
+            <param name="v">
+            Right operand
+            </param>
+            <returns>
+            The result of evaluation the given operation on the given object.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.ExecuteEvaluation">
+            <summary>
+            Sorts the mathmatical operations to be executed
+            </summary>
+            <returns>
+            The execute evaluation.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.NextToken(System.Int32)">
+            <summary>
+            This will search the expression for the next token (operand, operator, etc)
+            </summary>
+            <param name="index">
+            Start Position of Search
+            </param>
+            <returns>
+            First character index after token.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.EvaluateList">
+            <summary>
+            Traverses the list to perform operations on items according to operator precedence
+            </summary>
+            <returns>
+            final evaluated expression of Expression string
+            </returns>
+        </member>
+        <member name="E:Tenaris.Library.System.Scripting.ExpressionEval.AdditionalFunctionEventHandler">
+            <summary>
+            This event will trigger for every function that is not intercepted internally
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.ExpressionEval.Expression">
+            <summary>
+            Gets or sets the expression to be evaluated.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.ExpressionEval.Variables">
+            <summary>
+            Gets or sets variable list.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOp">
+            <summary>
+            This structure is used internally to order operations
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOp.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOp"/> class.
+            </summary>
+            <param name="strOp">
+            The str op.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOp.ToString">
+            <summary>
+            Overrides the object ToString() method.
+            </summary>
+            <returns>
+            The string representing the object.
+            </returns>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOp.Op">
+            <summary>
+            Gets the operation code.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOp.Precedence">
+            <summary>
+            Gets Precedence.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOpQueue">
+            <summary>
+            Queueing binary operations
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOpQueue.#ctor(System.Collections.ArrayList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOpQueue"/> class.
+            </summary>
+            <param name="expressionList">
+            The expression list.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOpQueue.Enqueue(Tenaris.Library.System.Scripting.ExpressionEval.BinaryOp)">
+            <summary>
+            The enqueue.
+            </summary>
+            <param name="op">
+            The operation to enqueue.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOpQueue.Dequeue">
+            <summary>
+            The dequeue.
+            </summary>
+            <returns>
+            The binary operation.
+            </returns>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.ExpressionEval.BinaryOpQueue.Count">
+            <summary>
+            Gets Count.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.ExpressionEval.UnaryOp">
+            <summary>
+            This structure is used internally to order operations
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.UnaryOp.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Scripting.ExpressionEval.UnaryOp"/> class.
+            </summary>
+            <param name="strOp">
+            The str op.
+            </param>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.ExpressionEval.UnaryOp.Op">
+            <summary>
+            Gets operation code.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.ExpressionEval.Variable">
+            <summary>
+            used to specify variables
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.ExpressionEval.Variable.Evaluate">
+            <summary>
+            Evaluates the expression.
+            </summary>
+            <returns>
+            The evaluation result.
+            </returns>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.ExpressionEval.Variable.Expression">
+            <summary>
+            Gets or sets Expression.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.DefinedRegex">
+            <summary>
+            This class is internal to the library, houses different regular expression objects
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.Numeric">
+            <summary>
+            Gets Numeric.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.Hexadecimal">
+            <summary>
+            Gets Hexadecimal.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.Boolean">
+            <summary>
+            Gets Boolean.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.UnaryOp">
+            <summary>
+            Gets UnaryOp.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.BinaryOp">
+            <summary>
+            Gets BinaryOp.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.Parenthesis">
+            <summary>
+            Gets Parenthesis.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.Function">
+            <summary>
+            Gets Function.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.Variable">
+            <summary>
+            Gets Variable.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.DateTime">
+            <summary>
+            Gets DateTime.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.TimeSpan">
+            <summary>
+            Gets TimeSpan.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.Str">
+            <summary>
+            Gets String.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.DefinedRegex.WhiteSpace">
+            <summary>
+            Gets WhiteSpace.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.AdditionalFunctionEventArgs">
+            <summary>
+            Event Handling for Additional Functions
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.AdditionalFunctionEventArgs.#ctor(System.String,System.Object[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Scripting.AdditionalFunctionEventArgs"/> class. 
+            This is the only constructor
+            </summary>
+            <param name="name">
+            The name of the function.
+            </param>
+            <param name="parameters">
+            Function parameters.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.AdditionalFunctionEventArgs.GetParameters">
+            <summary>
+            This method will return an array of objects that are parameters.
+            </summary>
+            <returns>Object array of function parameters</returns>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.AdditionalFunctionEventArgs.Name">
+            <summary>
+            Gets the name of the additional function
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.AdditionalFunctionEventArgs.ReturnValue">
+            <summary>
+            Gets or sets return value
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.FireAdditionalFunction">
+            <summary>
+            The additional function event handler.
+            </summary>
+            <param name="sender">
+            The sender.
+            </param>
+            <param name="e">
+            Additional function event args.
+            </param>
+        </member>
+        <member name="T:Tenaris.Library.System.Scripting.FunctionEval">
+            <summary>
+            This class provides functionality for evaluating functions
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Scripting.FunctionEval"/> class. 
+            Initializes the Expression Property
+            </summary>
+            <param name="expression">
+            Expression to evaluate
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.Evaluate(System.String)">
+            <summary>
+            Evaluates a string expression of a function
+            </summary>
+            <param name="expression">The expression to be evaluated.
+            </param>
+            <returns>
+            evauluated value
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.Evaluate(System.String,Tenaris.Library.System.Scripting.FireAdditionalFunction)">
+            <summary>
+            Evaluates a string expression of a function
+            </summary>
+            <param name="expression">The expression to be evaluated.
+            </param>
+            <param name="handler">
+            attach a custom function handler
+            </param>
+            <returns>
+            evauluated value
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.Replace(System.String)">
+            <summary>
+            This routine will replace functions existing in a input string with thier respective values
+            </summary>
+            <param name="input">
+            input string
+            </param>
+            <returns>
+            input string with all found functions replaced with returned values
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.Replace(System.String,Tenaris.Library.System.Scripting.FireAdditionalFunction)">
+            <summary>
+            This routine will replace functions existing in a input string with thier respective values
+            </summary>
+            <param name="input">
+            input string
+            </param>
+            <param name="handler">
+            Additional function handler for custom functions
+            </param>
+            <returns>
+            input string with all found functions replaced with returned values
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.Iif(System.Object[])">
+            <summary>
+            Does the work for the IIF function
+            </summary>
+            <param name="parameters">
+            parameters first is condition, 
+            second is val if true, 
+            third is val if false
+            </param>
+            <returns>
+            params 2 if param 1 is true, otherwise param 3
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.Case(System.Object[])">
+            <summary>
+            Executes a case/when statement
+            </summary>
+            <param name="parameters">
+            condition, val, condition2, val2, ...
+            </param>
+            <returns>
+            returns the parameter after the first condition parameter that evaluates to true
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.Evaluate">
+            <summary>
+            Evaluates the Expression
+            </summary>
+            <returns>
+            The evaluate.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.ReplaceEx(System.String)">
+            <summary>
+            Since the static replace will not allow a second Replace(string), Replace(ex) will do so with
+            this instance (so that variables will work)
+            </summary>
+            <param name="input">
+            input string
+            </param>
+            <returns>
+            filtered string
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.Replace">
+            <summary>
+            This routine will replace functions existing in the Expression property with thier respective values
+            </summary>
+            <returns>
+            Expression string with all found functions replaced with returned values
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.SetVariable(System.String,System.Object)">
+            <summary>
+            Sets a variable's value
+            </summary>
+            <param name="key">
+            variable name
+            </param>
+            <param name="value">
+            variable value
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.ClearVariable(System.String)">
+            <summary>
+            Clear's a variable's value
+            </summary>
+            <param name="key">
+            variable name
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.ToString">
+            <summary>
+            string override, return Expression property
+            </summary>
+            <returns>
+            returns Expression property
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.AdditionalFunctionHelper(System.String,System.Object[])">
+            <summary>
+            This method helps fire the event for any function not intercepted internally
+            </summary>
+            <param name="name">
+            Name of the function
+            </param>
+            <param name="values">
+            Function parameters.
+            </param>
+            <returns>
+            returned from event
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.GetParameters(System.Text.RegularExpressions.Capture)">
+            <summary>
+            Returns the parameters of a function
+            </summary>
+            <param name="m">
+            regex math value.
+            </param>
+            <returns>
+            An array with function parameters.
+            </returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Scripting.FunctionEval.ExecuteFunction(System.String,System.Object[])">
+            <summary>
+            Executes the function based upon the name of the function
+            </summary>
+            <param name="name">
+            name of the function to execute
+            </param>
+            <param name="p">
+            parameter list
+            </param>
+            <returns>
+            returned value of executed function
+            </returns>
+        </member>
+        <member name="E:Tenaris.Library.System.Scripting.FunctionEval.AdditionalFunctionEventHandler">
+            <summary>
+            This event will trigger for every function that is not intercepted internally
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.FunctionEval.Variables">
+            <summary>
+            Gets or sets Variables.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Scripting.FunctionEval.Expression">
+            <summary>
+            Gets or sets the expression to be evaluated
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.InvocationContext.AddDataToRequestContext(System.String,System.Object)">
+            <summary>
+            Agrega un valor para ser enviado en el proximo Request. 
+            Luego de la invocación el contenedor se vacía y se agrega a la propiedad RequestContext.
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.InvocationContext.GetDataFromRequestContext(System.String)">
+            <summary>
+            Devuelve el dato que va a ser enviado en la próxima invocación, null en caso que no exista.
+            Luego de la invocación el contenedor se vacía y se agrega a la propiedad RequestContext.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.InvocationContext.CleanDataFromRequestContext">
+            <summary>
+            Limpia el contenedor de datos que se envia en el Request.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.InvocationContext.GetRequestContext">
+            <summary>
+            Devuelve el diccionario que contiene los datos que se van a enviar en la próxima invocación
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.InvocationContext.AddDataToResponseContext(System.String,System.Object)">
+            <summary>
+            Agrega un valor para ser enviado en el proximo Response. 
+            Luego de la invocación el contenedor se vacía y se agrega a la propiedad ResponseContext.
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.InvocationContext.GetDataFromResponseContext(System.String)">
+            <summary>
+            Devuelve el dato que va a ser enviado en el próximo Response, null en caso que no exista.
+            Luego de la invocación el contenedor se vacía y se agrega a la propiedad ResponseContext.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.InvocationContext.CleanDataFromResponseContext">
+            <summary>
+            Limpia el contenedor de datos que se envia en el Request.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Remoting.InvocationContext.GetResponseContext">
+            <summary>
+            Devuelve el diccionario que contiene los datos que se van a enviar en el próximo Response
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Remoting.InvocationContext.RequestContext">
+            <summary>
+            Contiene los datos de contexto enviados en la última invocación.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Remoting.InvocationContext.ResponseContext">
+            <summary>
+            Contiene los datos de contexto recibidos en la última invocacion.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.src.Remoting.MultipleEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Remoting.MultipleEventArgs.Senders">
+            <summary>
+            Gets or sets the senders.
+            </summary>
+            <value>
+            The senders.
+            </value>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Remoting.MultipleEventArgs.Events">
+            <summary>
+            Gets or sets the events.
+            </summary>
+            <value>
+            The events.
+            </value>
+        </member>
+        <member name="T:Tenaris.Library.System.Remoting.RemoteEvent`1">
+            <summary>
+            Server-side remote event helper class.
+            </summary>
+            <typeparam name="TEventArgs">
+            The TEventArgs types to be used in this event.
+            </typeparam>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.RemoteEvent`1.#ctor">
+            <summary>
+            Initializes a new instance of the RemotableEventServer class.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.RemoteEvent`1.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the RemotableEventServer class.
+            </summary>
+            <param name="disconnectOnError">if set to <c>true</c> [p disconnect on error].</param>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.RemoteEvent`1.InvokeEvent(System.Object,`0)">
+            <summary>
+            Invokes the event on the remote clients.
+            </summary>
+            <param name="sender">The event sender.</param>
+            <param name="args">The event args.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.Remoting.RemoteEvent`1.InvokeEventAsync(System.Object,`0)">
+            <summary>
+            Creates a Thread and executes synchronous invocation. Do not uses the Threads pool.
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="E:Tenaris.Library.System.Remoting.RemoteEvent`1.AsyncDispatchFinished">
+            <summary>
+            Occurs when [async dispatch finished].
+            </summary>
+        </member>
+        <member name="E:Tenaris.Library.System.Remoting.RemoteEvent`1.ErrorDetected">
+            <summary>
+            This event will be invoked every time an error is detected on the dispatch of a remote event.
+            </summary>
+        </member>
+        <member name="E:Tenaris.Library.System.Remoting.RemoteEvent`1.Event">
+            <summary>
+            Remote clients connects to this event to recieve notifications.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Remoting.RemoteEvent`1.DispatchMultipleEvents">
+            <summary>
+            Gets or sets a value indicating whether [dispatch multiple events].
+            </summary>
+            <value>
+            <c>true</c> if [dispatch multiple events]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Tenaris.Library.System.Remoting.RemoteEvent`1.InvocationTries">
+            <summary>
+            Invocation number of attempts before sending a communication error.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.Remoting.RemoteEvent`1.InvocationTrySleepTime">
+            <summary>
+            Waiting time (in milliseconds) between invocations attempts.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Remoting.RemoteEvent`1.ErrorDetectedHandler">
+            <summary>
+            The handler prototype to be invoked when errors are detected on the dispatch of the
+            event.
+            </summary>
+            <param name="sender">The remote-server event.</param>
+            <param name="error">The exception raised while dispatching the event.</param>
+            <param name="client">The target to which the event was being dispatched.</param>
+            <param name="disconnect">A reference boolean that can be used to disconnect
+            the remote event.</param>
+        </member>
+        <member name="T:Tenaris.Library.System.Tcp.TcpBuffer">
+            <summary>
+             Stores array of bytes and has the ability to append and extract slices in order to get completed packets.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Text.NamedFormatter">
+            <summary>
+            An extension to the String.Format. It replaces the index based placeholder with named placeholders.
+            Basically you give to this function a format string just like the one you give to String.Format but
+            like this "{Name}, {LastName}. Age {Age:d2}". Then it will complete the data calling the properties
+            of an object (in the previous example, you should pass to the function an object with a Name, LastName
+            Age property.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Text.NamedFormatter.#ctor(System.String,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.Text.NamedFormatter"/> class. 
+            Constructor for a named formmater.
+            </summary>
+            <param name="template">
+            The string template. In the form of (example) "{Name}, {LastName}. Age {Age:d2}".
+            </param>
+            <param name="objectType">
+            The type of the object to use further on to replace the template.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Text.NamedFormatter.Format(System.Object)">
+            <summary>
+            Formats the template given in the constructor with the given object data.
+            </summary>
+            <param name="value">The object to use as data source.</param>
+            <returns>The formatted string.</returns>
+        </member>
+        <member name="T:Tenaris.Library.System.Text.StringExtensions">
+            <summary>
+            Named formatter StringExtensions methods.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Text.StringExtensions.Inject(System.String,System.Object,System.Boolean)">
+            <summary>
+            Encapsulate the use of NamedFormatter.Format. Just pass to the function the format and the object
+            used as data source and it will replace the format string with the data in the object.
+            </summary>
+            <param name="format">The template string.</param>
+            <param name="value">The object to use as data source.</param>
+            <param name="cache">If true, the template will be cached to speed up (significantly) further calls.</param>
+            <returns>The formatted string.</returns>
+        </member>
+        <member name="M:Tenaris.Library.System.Text.StringExtensions.Inject(System.String,System.Object)">
+            <summary>
+            Encapsulate the use of NamedFormatter.Format. Just pass to the function the format and the object
+            used as data source and it will replace the format string with the data in the object. It will
+            cache all the type info necessary to speed up further calls to this method.
+            </summary>
+            <param name="format">The template string.</param>
+            <param name="value">The object to use as data source.</param>
+            <returns>The formatted string.</returns>
+        </member>
+        <member name="T:Tenaris.Library.System.src.Threading.Worker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.Worker.#ctor(Tenaris.Library.System.src.Threading.WorkerPool)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.src.Threading.Worker"/> class.
+            </summary>
+            <param name="pool">The pool.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.Worker.Start(Tenaris.Library.System.src.Threading.WorkerHandler)">
+            <summary>
+            Starts the specified start.
+            </summary>
+            <param name="start">The start.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.Worker.Start(Tenaris.Library.System.src.Threading.WorkerHandler,System.Object)">
+            <summary>
+            Starts the specified start.
+            </summary>
+            <param name="start">The start.</param>
+            <param name="state">The state.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.Worker.Stop">
+            <summary>
+            Stops this instance.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.Worker.DoWork">
+            <summary>
+            Does the work.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.Worker.RaiseStarted">
+            <summary>
+            Raises the started.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.Worker.RaiseStopped">
+            <summary>
+            Raises the stopped.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.Worker.DoChangeStatus(Tenaris.Library.System.src.Threading.WorkerStatus)">
+            <summary>
+            Does the change status.
+            </summary>
+            <param name="status">The status.</param>
+        </member>
+        <member name="E:Tenaris.Library.System.src.Threading.Worker.Started">
+            <summary>
+            Occurs when [started].
+            </summary>
+        </member>
+        <member name="E:Tenaris.Library.System.src.Threading.Worker.Finished">
+            <summary>
+            Occurs when [finished].
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Threading.Worker.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Threading.Worker.Core">
+            <summary>
+            Gets or sets the core.
+            </summary>
+            <value>
+            The core.
+            </value>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.PoolledWorker.#ctor(Tenaris.Library.System.src.Threading.WorkerPool)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.src.Threading.PoolledWorker"/> class.
+            </summary>
+            <param name="pool">The pool.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.PoolledWorker.ChangeStatus(Tenaris.Library.System.src.Threading.WorkerStatus)">
+            <summary>
+            Changes the status.
+            </summary>
+            <param name="status">The status.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.PoolledWorker.Work(Tenaris.Library.System.src.Threading.WorkerCore)">
+            <summary>
+            Works the specified core.
+            </summary>
+            <param name="core">The core.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.PoolledWorker.GetCore">
+            <summary>
+            Gets the core.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.PoolledWorker.RemoveCore">
+            <summary>
+            Removes the core.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.Threading.ThreadExtensions">
+            <summary>
+            Thread class extension methods.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.Threading.ThreadExtensions.Join(System.Collections.Generic.IEnumerable{System.Threading.Thread})">
+            <summary>
+            Waits for all threads in the sequence to terminate using Thread.Join() on them.
+            </summary>
+            <param name="threads">
+            The instance to which method applies.
+            </param>
+        </member>
+        <member name="M:Tenaris.Library.System.Threading.ThreadExtensions.ThreadExitCallback(System.Threading.Thread,System.Threading.ContextCallback,System.Object)">
+            <summary>
+            Callback passed to this method will be invoked on thread exit. State is a context object with
+            user defined data.
+            </summary>
+            <param name="thread">The thread on which the method is executed.</param>
+            <param name="callback"> The callback to call upon thread finalization.</param>
+            <param name="state">The user defined object to pass to the callback on invocation.</param>
+        </member>
+        <member name="T:Tenaris.Library.System.Threading.ThreadExtensions.ThreadExitCallbackContext">
+            <summary>
+            Represents a set of callback to call when the specified thread ends.
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.src.Threading.WorkerCore">
+            <summary>
+            WorkerCore Class
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerCore.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.src.Threading.WorkerCore"/> class.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerCore.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.src.Threading.WorkerCore"/> class.
+            </summary>
+            <param name="idleTimeOut">The idle time out.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerCore.Start(Tenaris.Library.System.src.Threading.PoolledWorker)">
+            <summary>
+            Starts the specified worker.
+            </summary>
+            <param name="worker">The worker.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerCore.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerCore.CancelDisposing">
+            <summary>
+            Cancels the disposing.
+            </summary>
+        </member>
+        <member name="E:Tenaris.Library.System.src.Threading.WorkerCore.Started">
+            <summary>
+            Occurs when [started].
+            </summary>
+        </member>
+        <member name="E:Tenaris.Library.System.src.Threading.WorkerCore.Finished">
+            <summary>
+            Occurs when [finished].
+            </summary>
+        </member>
+        <member name="E:Tenaris.Library.System.src.Threading.WorkerCore.Disposed">
+            <summary>
+            Occurs when [disposed].
+            </summary>
+        </member>
+        <member name="E:Tenaris.Library.System.src.Threading.WorkerCore.Disposing">
+            <summary>
+            Occurs when [disposing].
+            </summary>
+        </member>
+        <member name="T:Tenaris.Library.System.src.Threading.WorkerHandler">
+            <summary>
+            
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="T:Tenaris.Library.System.src.Threading.WorkerPool">
+            <summary>
+            WorkerPool Class
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPool.CreateWorker">
+            <summary>
+            Creates the worker.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPool.Enqueue(Tenaris.Library.System.src.Threading.Worker)">
+            <summary>
+            Enqueues the specified worker.
+            </summary>
+            <param name="worker">The worker.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPool.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.src.Threading.WorkerPool"/> class.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPool.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Tenaris.Library.System.src.Threading.WorkerPool"/> class.
+            </summary>
+            <param name="maxCores">The max cores.</param>
+            <param name="maxAvailable">The max available.</param>
+            <param name="maxTimeIdle">The max time idle.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPool.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:Tenaris.Library.System.src.Threading.WorkerPool"/> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPool.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPoolManager.RegisterPool(Tenaris.Library.System.src.Threading.WorkerPool)">
+            <summary>
+            Registers the pool.
+            </summary>
+            <param name="pool">The pool.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPoolManager.UnRegisterPool(Tenaris.Library.System.src.Threading.WorkerPool)">
+            <summary>
+            Uns the register pool.
+            </summary>
+            <param name="pool">The pool.</param>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPoolManager.Dispose">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPoolManager.CreateCore">
+            <summary>
+            Creates the core.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tenaris.Library.System.src.Threading.WorkerPoolManager.CreateCore(System.Int32)">
+            <summary>
+            Creates the core.
+            </summary>
+            <param name="idletimeout">The idletimeout.</param>
+            <returns></returns>
+        </member>
+        <member name="E:Tenaris.Library.System.src.Threading.WorkerPoolManager.WorkerFree">
+            <summary>
+            Occurs when [worker free].
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Threading.WorkerPoolManager.GlobalPool">
+            <summary>
+            Gets the global pool.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Threading.WorkerPoolManager.WorkerCounts">
+            <summary>
+            Gets the worker counts.
+            </summary>
+        </member>
+        <member name="P:Tenaris.Library.System.src.Threading.WorkerPoolManager.MaximumWorkers">
+            <summary>
+            Gets or sets the maximum workers.
+            </summary>
+            <value>
+            The maximum workers.
+            </value>
+        </member>
+        <member name="T:Tenaris.Library.System.src.Threading.WorkerStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.System.src.Threading.WorkerStatus.Idle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.System.src.Threading.WorkerStatus.Working">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Tenaris.Library.System.src.Threading.WorkerStatus.Waiting">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
